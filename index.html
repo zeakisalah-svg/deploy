@@ -10,7 +10,7 @@
 <body>
     <aside class="sidebar">
         <div class="brand"><span class="brand-mark" aria-hidden="true">M</span><div><strong>MMS</strong><small>Municipal Management</small></div></div>
-        <nav aria-label="Tax and revenue" id="navigation">
+        <nav aria-label="Tax and revenue" id="navigation" hidden>
             <a href="#dashboard">Dashboard</a>
             <a href="#revenue">Revenue</a>
             <a href="#taxpayers">Taxpayers</a>
@@ -19,10 +19,10 @@
             <a href="#reports">Reports</a>
             <a href="#access">Roles &amp; audit</a>
         </nav>
-        <p class="environment">Local demo · synthetic data</p>
+        <p class="environment">Local workspace · synthetic records only</p>
     </aside>
     <main>
-        <header class="topbar"><span>Tax &amp; Revenue</span><label>Demo role <select id="role"><option value="admin">Administrator</option><option value="cashier">Cashier</option><option value="viewer">Viewer</option></select></label></header>
+        <header class="topbar"><span>Tax &amp; Revenue</span><div class="account"><span id="account"></span><button id="logout" type="button" hidden>Sign out</button></div></header>
         <div id="view"></div>
         <p id="status" role="status"></p>
     </main>

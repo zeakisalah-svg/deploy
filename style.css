@@ -134,3 +134,5 @@ button:disabled { opacity: .6; cursor: wait; }
     p { color: #333; }
 }
 
+[hidden] { display: none !important; }
+.account { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
