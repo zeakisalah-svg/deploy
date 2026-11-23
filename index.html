@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipal Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand"><span class="brand-mark" aria-hidden="true">M</span><div><strong>MMS</strong><small>Municipal Management</small></div></div>
+        <nav aria-label="Tax and revenue" id="navigation">
+            <a href="#dashboard">Dashboard</a>
+            <a href="#revenue">Revenue</a>
+            <a href="#taxpayers">Taxpayers</a>
+            <a href="#payments">Payments</a>
+            <a href="#debts">Debts</a>
+            <a href="#reports">Reports</a>
+            <a href="#access">Roles &amp; audit</a>
+        </nav>
+        <p class="environment">Local demo · synthetic data</p>
+    </aside>
+    <main>
+        <header class="topbar"><span>Tax &amp; Revenue</span><label>Demo role <select id="role"><option value="admin">Administrator</option><option value="cashier">Cashier</option><option value="viewer">Viewer</option></select></label></header>
+        <div id="view"></div>
+        <p id="status" role="status"></p>
+    </main>
+</body>
+</html>
