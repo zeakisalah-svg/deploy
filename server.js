@@ -7,6 +7,7 @@ const { migration, identity, createAccount, audit, verifyAudit, roles: permissio
 const { migrateRevenue, post, fingerprint } = require('./revenue');
 const { migrateReversals, reverse } = require('./reversals');
 const demo = process.argv.includes('--demo');
+const demoSecret = demo ? require('node:crypto').randomBytes(32).toString('hex') : null;
 const provideAccount = process.argv.includes('--create-account');
 
 const db = new DatabaseSync(demo ? ':memory:' : process.env.MMS_DB || join(__dirname, 'mms-demo.sqlite'));
@@ -45,7 +46,7 @@ if (provideAccount) {
   return;
 }
 if (demo) {
-  for (const role of Object.keys(permissions)) createAccount(db,role,'mms-synthetic-example',role);
+  createAccount(db,'admin',demoSecret,'admin');
 }
 const auth = identity(db);
 
@@ -174,7 +175,9 @@ createServer(async (request, response) => {
       return reply(response, 200, { user: actor && { id: actor.id, username: actor.username, role: actor.role }, demo });
     }
     if (request.method === 'POST' && route === 'login') {
-      const result = await auth.login(await json(request), actor);
+      const input = await json(request);
+      const credentials = demo ? { username:input?.username === 'admin' ? 'admin' : '', password:demoSecret } : input;
+      const result = await auth.login(credentials, actor);
       if (result?.limited) return reply(response, 429, { error: 'Too many sign-in attempts. Try again in a minute.' });
       if (!result) return reply(response, 401, { error: 'Invalid account name or password.' });
       response.setHeader('Set-Cookie', cookie(result.token));

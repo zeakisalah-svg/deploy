@@ -4,7 +4,7 @@ Local development requires Node.js 26 and uses its built-in SQLite support. The 
 
 ## Run locally
 
-For a synthetic preview, run node server.js --demo. The demo displays its test credentials on the sign-in screen and resets on restart. It uses an in-memory database.
+For a synthetic preview, run node server.js --demo. Choose Admin to enter the synthetic demo without a password. Demo records reset on restart. It uses an in-memory database.
 
 For the persistent local workspace, provision the first administrator using node server.js --create-account with MMS_ACCOUNT and MMS_PASSWORD set through a private local terminal session. MMS_ROLE defaults to admin. Use a unique passphrase with at least 15 characters and clear the variables immediately after provisioning. Run node server.js to start the workspace. MMS_PORT defaults to 8765 and MMS_DB defaults to mms-demo.sqlite. The persistent workspace contains the legacy synthetic records. Keep it limited to synthetic records until the production controls and legal review are complete.
 

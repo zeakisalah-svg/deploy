@@ -228,9 +228,11 @@ function setUser(next) {
     view.textContent = 'Loading…';
     return;
   }
-  const demoText = demo ? '<p>Synthetic demo accounts are admin, cashier, and viewer. Password: <code>mms-synthetic-example</code>.</p>' : '';
+  const signInForm = demo
+    ? '<form id="signin"><input type="hidden" name="username" value="admin"><button type="submit">Admin</button></form>'
+    : '<form id="signin"><label>Account name<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><button type="submit">Sign in</button></form>';
   view.innerHTML = '<div class="intro"><h1>Sign in to MMS</h1></div>' +
-    card('Staff account', demoText + '<form id="signin"><label>Account name<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><button type="submit">Sign in</button></form>');
+    card(demo ? 'Local demo' : 'Staff account', signInForm);
 }
 logout.addEventListener('click', async () => {
   try {
